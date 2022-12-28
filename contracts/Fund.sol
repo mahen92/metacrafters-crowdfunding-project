@@ -56,14 +56,14 @@ contract Fund {
 
     modifier onlyActiveFund {
         require(cancelled == false, "This fund has been cancelled");
-        /*require(block.timestamp >= opening, "Funding is yet to begin");
-        require(block.timestamp <= closing, "Funding has ended");*/
+        require(block.timestamp >= opening, "Funding is yet to begin");
+        require(block.timestamp <= closing, "Funding has ended");
 
         _;
     }
 
     modifier onlyValidClaim {
-        require(value >= goal, "Campaign did not succed");
+        require(value >= goal, "Campaign did not succeed");
         require(!isOver, "claimed");
 
         _;
