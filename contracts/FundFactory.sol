@@ -31,9 +31,9 @@ contract FundFactory is ReentrancyGuardUpgradeable{
    required data is updated.
   */
   function launch(uint duration,address payable token,uint _goal, uint32 _startAt, uint32 _endAt,uint value) external {
-        //require(_startAt >= block.timestamp,"Start time is less than current Block Timestamp");
-        //require(_endAt > _startAt,"End time is less than Start time");
-        //require(_endAt <= block.timestamp + duration, "End time exceeds the maximum Duration");
+        require(_startAt >= block.timestamp,"Start time is less than current Block Timestamp");
+        require(_endAt > _startAt,"End time is less than Start time");
+        require(_endAt <= block.timestamp + duration, "End time exceeds the maximum Duration");
 
         number += 1;
         Fund fund = new Fund(token, duration,_goal,msg.sender,_startAt,_endAt,value,number);
